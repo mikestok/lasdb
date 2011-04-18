@@ -32,3 +32,5 @@ gem 'sqlite3'
 
 gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
+
+gem "jquery-rails"

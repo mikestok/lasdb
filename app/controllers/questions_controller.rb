@@ -9,6 +9,9 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    # Assume that if we are making a question there will be at least
+    # one answer to it.
+    @question.answers.build
   end
 
   def create

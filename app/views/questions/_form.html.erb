@@ -2,7 +2,13 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :prompt %><br />
-    <%= f.text_area :prompt %>
+    <%= f.text_area :prompt, :rows => 3%>
   </p>
+  <ol type="a">
+  <%= f.fields_for :answers do |builder| %>
+    <%= render 'answer_fields', :f => builder %>
+  <% end %>
+  </ol>
+  <p><%= button_to_add_fields_to_list "Add Answer", f, :answers %></p>
   <p><%= f.submit %></p>
 <% end %>
