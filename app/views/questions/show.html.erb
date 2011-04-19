@@ -1,15 +1,7 @@
 <% title "Question" %>
 
-<p>
-  <strong>Prompt:</strong>
-  <%= @question.prompt %>
-</p>
+<%= render 'question', :q => @question %>
 
-<ol type="a">
-  <% for answer in @question.answers %>
-  <li><%= answer.text %></li>
-  <% end %>
-</ol>
 <p>
   <%= link_to "Edit", edit_question_path(@question) %> |
   <%= link_to "Destroy", @question, :confirm => 'Are you sure?', :method => :delete %> |
