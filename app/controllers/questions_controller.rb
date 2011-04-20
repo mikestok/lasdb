@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.order("questions.category ASC, questions.subcategory ASC, questions.id ASC").all
   end
 
   def show

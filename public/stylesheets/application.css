@@ -73,3 +73,8 @@ a {
 .error_messages ul {
   margin: 0;
 }
+
+.category_heading {
+  font-size: 14px;
+  font-weight: bold;
+}
