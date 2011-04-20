@@ -1,5 +1,5 @@
 module QuestionsHelper
-  # Renders a human readable combination of category and
+  # Generates a human readable combination of category and
   # subcategory
   def full_category(q)
     full_category = q.category
