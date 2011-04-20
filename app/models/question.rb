@@ -7,4 +7,10 @@ class Question < ActiveRecord::Base
     :reject_if => lambda { |a| a[:text].blank? },
     :allow_destroy => true
   validates_presence_of :prompt, :answers
+
+  # Finds the most recent updated_at for the question and
+  # any of its answers.
+  def changed_at
+    ([updated_at] + answers.map(&:updated_at)).max
+  end
 end
