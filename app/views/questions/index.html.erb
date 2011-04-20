@@ -1,7 +1,14 @@
 <% title "Questions" %>
 
+<% last_category = nil %>
+
 <table>
   <% for question in @questions %>
+    <% current_category = full_category(question) %>
+    <% if current_category != last_category %>
+      <% last_category = current_category %>
+      <tr><td><span class="category_heading"><%= current_category %></span></td></tr>
+    <% end %>
     <tr>
       <td><%= render question, :q => question %></td>
       <td><%= link_to "Show", question %></td>
