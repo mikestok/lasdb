@@ -1,6 +1,14 @@
 <%= form_for @question do |f| %>
   <%= f.error_messages %>
   <p>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.label :subcategory %>
+    <%= f.text_field :subcategory %>
+  </p>
+  <p>
     <%= f.label :prompt %><br />
     <%= f.text_area :prompt, :rows => 3%>
   </p>

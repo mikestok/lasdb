@@ -1,6 +1,15 @@
 <% title "Question" %>
 
+<p>
+  Category: <%= full_category(@question) %>
+</p>
+
 <%= render 'question', :q => @question %>
+
+<p>
+  Added to database: <%= @question.created_at %><br/>
+  Most recent change: <%= @question.changed_at %>
+</p>
 
 <p>
   <%= link_to "Edit", edit_question_path(@question) %> |
