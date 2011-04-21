@@ -13,4 +13,11 @@ class Question < ActiveRecord::Base
   def changed_at
     ([updated_at] + answers.map(&:updated_at)).max
   end
+
+  # Generates a human readable category
+  def full_category
+    fc = category || ""
+    fc += " (#{subcategory})" unless subcategory.blank?
+    fc
+  end
 end
