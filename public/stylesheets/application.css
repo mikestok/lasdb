@@ -78,3 +78,23 @@ a {
   font-size: 14px;
   font-weight: bold;
 }
+
+
+@media print {
+  body {
+    background-color: #FFF;
+    font-family: "Timesi New Roman", Times, serif;
+    font-size: 14px;
+  }
+
+  #container {
+     width: auto;
+     margin: 0;
+     padding: 0;
+     border: none;
+  }
+
+  .non_printing {
+    display: none;
+  }
+}

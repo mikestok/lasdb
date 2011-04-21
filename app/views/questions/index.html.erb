@@ -6,12 +6,12 @@
     <% group[:questions].each do |question| %>
       <tr>
         <td><%= render question, :q => question %></td>
-        <td><%= link_to "Show", question %></td>
-        <td><%= link_to "Edit", edit_question_path(question) %></td>
-        <td><%= link_to "Destroy", question, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td class="non_printing"><%= link_to "Show", question %></td>
+        <td class="non_printing"><%= link_to "Edit", edit_question_path(question) %></td>
+        <td class="non_printing"><%= link_to "Destroy", question, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
   </table>
 <% end %>
 
-<p><%= link_to "New Question", new_question_path %></p>
+<p class="non_printing"><%= link_to "New Question", new_question_path %></p>
