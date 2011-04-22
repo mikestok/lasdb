@@ -3,9 +3,9 @@
 one:
   question_id: 1
   text: MyText
-  correct?: false
+  correct: false
 
 two:
   question_id: 1
   text: MyText
-  correct?: false
+  correct: false
