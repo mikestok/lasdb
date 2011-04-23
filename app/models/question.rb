@@ -1,7 +1,8 @@
 class Question < ActiveRecord::Base
   attr_accessible :prompt,
-    :answers, :answers_attributes,
-    :category, :subcategory
+    :category_id,
+    :answers, :answers_attributes
+  belongs_to :category
   has_many :answers, :dependent => :destroy
   accepts_nested_attributes_for :answers,
     :reject_if => lambda { |a| a[:text].blank? },
@@ -12,12 +13,5 @@ class Question < ActiveRecord::Base
   # any of its answers.
   def changed_at
     ([updated_at] + answers.map(&:updated_at)).max
-  end
-
-  # Generates a human readable category
-  def full_category
-    fc = category || ""
-    fc += " (#{subcategory})" unless subcategory.blank?
-    fc
   end
 end

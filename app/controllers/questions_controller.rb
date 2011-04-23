@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    @categories = Category.all.sort
     @question = Question.new
     # Assume that if we are making a question there will be at least
     # one answer to it.
@@ -24,6 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all.sort
     @question = Question.find(params[:id])
   end
 
