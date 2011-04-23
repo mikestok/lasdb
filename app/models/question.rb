@@ -1,7 +1,9 @@
+# encoding: UTF-8
+
 class Question < ActiveRecord::Base
   attr_accessible :prompt,
-    :answers, :answers_attributes,
-    :category, :subcategory
+    :answers, :answers_attributes
+  belongs_to :category
   has_many :answers, :dependent => :destroy
   accepts_nested_attributes_for :answers,
     :reject_if => lambda { |a| a[:text].blank? },
@@ -16,8 +18,7 @@ class Question < ActiveRecord::Base
 
   # Generates a human readable category
   def full_category
-    fc = category || ""
-    fc += " (#{subcategory})" unless subcategory.blank?
-    fc
+    return '' if category.blank?
+    category.with_ancestors.map(&:name).join(" ⇒ ");
   end
 end

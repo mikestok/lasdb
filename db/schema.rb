@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422223048) do
+ActiveRecord::Schema.define(:version => 20110422223942) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -31,8 +31,7 @@ ActiveRecord::Schema.define(:version => 20110422223048) do
     t.text     "prompt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
-    t.string   "subcategory"
+    t.integer  "category_id"
   end
 
 end
