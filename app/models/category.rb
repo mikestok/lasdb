@@ -7,4 +7,25 @@ class Category < ActiveRecord::Base
   def with_ancestors
     ([self] + ancestors).reverse
   end
+
+  # generates an indented name
+  def indented_name(indent_with="- ")
+    indent_with * ancestors.length + name
+  end
+
+  # We sort categories in dictionary order on their
+  # full list of names from root to category.
+  def <=>(other)
+    with_ancestors.zip(other.with_ancestors) do |a, b|
+      # was one list shorter than the other?
+      return -1 if a.nil?
+      return 1 if b.nil?
+      c = (a.name.downcase <=> b.name.downcase).nonzero? ||
+          (a.name          <=> b.name         ).nonzero?
+      return c if c
+    end
+    # if we get all the way to the end of the list of names
+    # then use the id as a tie breaker
+    id <=> other.id
+  end
 end

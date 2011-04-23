@@ -1,7 +1,7 @@
 <% title "Question" %>
 
 <p>
-  Category: <%= full_category(question) %>
+  Category: <%= full_category_title(@question) %>
 </p>
 
 <%= render 'question', :q => @question %>

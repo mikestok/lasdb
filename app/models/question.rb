@@ -1,7 +1,6 @@
-# encoding: UTF-8
-
 class Question < ActiveRecord::Base
   attr_accessible :prompt,
+    :category_id,
     :answers, :answers_attributes
   belongs_to :category
   has_many :answers, :dependent => :destroy
@@ -14,11 +13,5 @@ class Question < ActiveRecord::Base
   # any of its answers.
   def changed_at
     ([updated_at] + answers.map(&:updated_at)).max
-  end
-
-  # Generates a human readable category
-  def full_category
-    return '' if category.blank?
-    category.with_ancestors.map(&:name).join(" ⇒ ");
   end
 end
