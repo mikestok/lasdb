@@ -1,0 +1,9 @@
+<ul>
+  <% categories.sort.each do |c| %>
+    <li><%= c.name %>
+      <% if not c.children.empty? %>
+        <%= render "down_from", :categories => c.children %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

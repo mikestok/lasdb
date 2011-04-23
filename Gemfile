@@ -34,3 +34,5 @@ gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
 
 gem "jquery-rails"
+
+gem "acts_as_tree_rails3"

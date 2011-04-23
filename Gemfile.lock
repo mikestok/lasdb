@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
+    acts_as_tree_rails3 (0.1.0)
     arel (2.0.9)
     builder (2.1.2)
     erubis (2.6.6)
@@ -74,6 +75,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_tree_rails3
   jquery-rails
   mocha
   nifty-generators

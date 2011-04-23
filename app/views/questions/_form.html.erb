@@ -2,11 +2,7 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :category %>
-    <%= f.text_field :category %>
-  </p>
-  <p>
-    <%= f.label :subcategory %>
-    <%= f.text_field :subcategory %>
+    <%= f.collection_select :category_id, Category.all.sort, :id, :indented_name, { :include_blank => "Select a category" }  %>
   </p>
   <p>
     <%= f.label :prompt %><br />
