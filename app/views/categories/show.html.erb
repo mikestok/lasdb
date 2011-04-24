@@ -1,0 +1,10 @@
+<% title "#{@category.full_name}" %>
+
+<p>
+  Name: <%= @category.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_category_path(@category) %>
+  <%= link_to "View All", categories_path %>
+</p>
