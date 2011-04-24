@@ -1,9 +1,8 @@
+<% title "Edit Category" %>
 
-<%= form_for @category do |f| %>
-  <%= f.error_messages %>
-  <p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit %></p>
-<% end %>
+<%= render "form" %>
+
+<p>
+  <%= link_to "Show", @category %> |
+  <%= link_to "View All", categories_path %>
+</p>
