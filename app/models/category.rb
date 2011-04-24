@@ -3,6 +3,7 @@
 class Category < ActiveRecord::Base
   acts_as_tree
   has_many :questions
+  validates_presence_of :name
 
   # Generates a list of ancestors + this category from the 
   # root to the category.

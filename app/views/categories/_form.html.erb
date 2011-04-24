@@ -1,0 +1,12 @@
+<%= form_for @category do |f| %>
+  <%= f.error_messages %>
+  <p>
+  <%= f.label :parent_category %>
+  <%= f.collection_select :parent_id, Category.all.sort, :id, :full_name, { :include_blank => "(No parent)" } %>
+  </p>
+  <p>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

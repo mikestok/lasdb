@@ -24,7 +24,6 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @categories = Category.all.sort
     @question = Question.find(params[:id])
   end
 
