@@ -14,4 +14,21 @@ class Question < ActiveRecord::Base
   def changed_at
     ([updated_at] + answers.map(&:updated_at)).max
   end
+
+  # in: nothing
+  # out: an array containing the names of the categories
+  #      of this question and all the category's ancestors.
+  def category_path
+    case
+    when category.nil? then []
+    else category.with_ancestors.map(&:name)
+    end
+  end
+
+  def full_category_name
+    case 
+    when category.nil? then ""
+    else category.full_name
+    end
+  end
 end
