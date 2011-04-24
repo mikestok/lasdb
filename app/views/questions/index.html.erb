@@ -1,9 +1,9 @@
 <% title "Questions" %>
 
-<% categorised_questions(@questions).each do |group| %>
-  <div class="category_heading"><%= group[:full_category_title] %></div> 
+<% sorted_grouped_questions(@questions).each do |group| %>
+  <div class="category_heading"><%= group[0].full_category_name %></div> 
   <table>
-    <% group[:questions].each do |question| %>
+    <% group.each do |question| %>
       <tr>
         <td><%= render question, :q => question %></td>
         <td class="non_printing"><%= link_to "Show", question %></td>

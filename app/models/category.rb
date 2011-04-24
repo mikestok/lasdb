@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Category < ActiveRecord::Base
   acts_as_tree
   has_many :questions
@@ -8,9 +10,9 @@ class Category < ActiveRecord::Base
     ([self] + ancestors).reverse
   end
 
-  # generates an indented name
-  def indented_name(indent_with="- ")
-    indent_with * ancestors.length + name
+  # generates an full name
+  def full_name(join_with=" ⇒ ")
+    with_ancestors.map(&:name).join(join_with)
   end
 
   # We sort categories in dictionary order on their
