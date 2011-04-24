@@ -24,4 +24,11 @@ class Question < ActiveRecord::Base
     else category.with_ancestors.map(&:name)
     end
   end
+
+  def full_category_name
+    case 
+    when category.nil? then ""
+    else category.full_name
+    end
+  end
 end

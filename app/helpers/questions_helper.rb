@@ -33,14 +33,4 @@ module QuestionsHelper
       end
     }
   end
- 
-  # in: a question 
-  #     optional string to join elements with
-  # out: a string
-  #
-  # Generate a full category for a question in a form 
-  # useful for printing.
-  def full_category_title(question, join_with = " ⇒ ")
-    question.category_path.join(join_with)
-  end
 end

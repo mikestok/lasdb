@@ -1,7 +1,7 @@
 <% title "Questions" %>
 
 <% sorted_grouped_questions(@questions).each do |group| %>
-  <div class="category_heading"><%= full_category_title(group[0]) %></div> 
+  <div class="category_heading"><%= group[0].full_category_name %></div> 
   <table>
     <% group.each do |question| %>
       <tr>
