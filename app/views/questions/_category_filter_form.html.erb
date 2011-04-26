@@ -1,0 +1,12 @@
+<%= form_tag questions_path, :method => :get do %>
+  <%= select_tag :filter_category_id,
+      raw('<option value="">(Uncategorised)</option>') + 
+      options_from_collection_for_select(Category.all.sort, :id, :full_name, params[:filter_category_id]) %>
+  <%= label_tag :include_subcategories %><%= check_box_tag :include_subcategories, 1, params[:include_subcategories] %>
+  <%= submit_tag "Filter" %>
+<% end %>
+<% if params[:commit] %>
+  <p>
+  <%= button_to "Show All Questions", questions_path, :method => :get %>
+  </p>
+<% end %>

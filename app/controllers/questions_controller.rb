@@ -1,6 +1,28 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.all
+    if params[:commit]
+      @questions = Question.find_all_by_category_id(
+        make_category_id_filter_condition(
+          params[:filter_category_id], params[:include_subcategories]
+        )
+      )
+    else
+      @questions = Question.all
+    end
+  end
+
+  # in: category id (possibly nil)
+  #     include subcategories flag
+  # out: something we can pass to find_all_by_category_id
+  def make_category_id_filter_condition(id, include_subcategories)
+    case
+    when id.blank?
+      nil
+    when include_subcategories
+      [id] +  Category.find(id).descendants.map(&:id)
+    else
+      id
+    end
   end
 
   def show
