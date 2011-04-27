@@ -1,0 +1,45 @@
+# Utility class to load the database from the YAML file e.g.
+#
+# rails c
+# data_dir = '../suzanne-lasdb-data'; $: << data_dir; require 'questions_loader'
+# Question.delete_all; Answer.delete_all; Category.delete_all
+# QuestionsLoader.load_file("#{data_dir}/questions.yaml")
+ 
+class QuestionsLoader
+  require 'yaml'
+  YAML::ENGINE.yamler = 'syck'
+
+  def self.load_file(filename)
+    data = File.read(filename)
+    questions = YAML.load(data)
+
+    questions.each do |q_struct|
+      store q_struct
+    end
+
+    return
+  end
+
+  def self.store(q_struct)
+    q = Question.new
+    q.prompt = q_struct[:prompt]
+    q.category = find_or_create_category(q_struct[:category], q_struct[:subcategory])
+    q_struct[:responses].each do |a_struct|
+      a = Answer.new
+      a.text = a_struct[:text]
+      a.correct = a_struct[:correct]
+      q.answers << a
+    end
+    q.save
+  end
+
+  def self.find_or_create_category(category, subcategory)
+    return if category.blank?
+    c = Category.find_or_create_by_name(category)
+    if not subcategory.blank?
+      c = c.children.find_or_create_by_name(subcategory)
+    end           
+
+    c
+  end
+end
