@@ -1,5 +1,5 @@
 body {
-  background-color: #4B7399;
+  background-color: #224;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -19,7 +19,17 @@ a {
 }
 
 #columns {
-  background: #114;
+  background: #224;
+}
+
+#banner {
+  background: #224;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #FFF;
+  text-align: center;
 }
 
 #side {
@@ -28,7 +38,7 @@ a {
   padding-left: 1em;
   padding-bottom: 1em;
   width: 10em;
-  background: #114;
+  background: #224;
 }
 
 #side a {
