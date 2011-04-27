@@ -18,13 +18,30 @@ a {
   overflow: hidden;
 }
 
+#columns {
+  background: #114;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 10em;
+  background: #114;
+}
+
+#side a {
+  color: #FFF;
+  font-size: small;
+}
+
 #container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  margin-left: 11em; // #side.width + 1em
+  padding-top: 4ex;
+  padding-bottom: 2ex;
+  padding-left: 2em;
+  background: #FFF;
 }
 
 #flash_notice, #flash_error, #flash_alert {
