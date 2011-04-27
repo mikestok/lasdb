@@ -8,12 +8,27 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= content_tag :h1, yield(:title) if show_title? %>
-      <%= yield %>
+    <div id="banner" class="non_printing">
+      Questions about L &amp S
+    </div>
+    <div id="main">
+      <div id="columns">
+        <div id="side" class="non_printing">
+          <div>
+            <%= link_to "Main Page", root_path %><br />
+            <%= link_to "Questions", questions_path %><br />
+            <%= link_to "Categories", categories_path %><br />
+          </div>
+        </div>
+
+        <div id="container">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          <% end %>
+          <%= content_tag :h1, yield(:title) if show_title? %>
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-  background-color: #4B7399;
+  background-color: #224;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -18,13 +18,40 @@ a {
   overflow: hidden;
 }
 
+#columns {
+  background: #224;
+}
+
+#banner {
+  background: #224;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: #FFF;
+  text-align: center;
+}
+
+#side {
+  float: left;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-bottom: 1em;
+  width: 10em;
+  background: #224;
+}
+
+#side a {
+  color: #FFF;
+  font-size: small;
+}
+
 #container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  margin-left: 11em; // #side.width + 1em
+  padding-top: 4ex;
+  padding-bottom: 2ex;
+  padding-left: 2em;
+  background: #FFF;
 }
 
 #flash_notice, #flash_error, #flash_alert {
