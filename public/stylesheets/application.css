@@ -110,7 +110,7 @@ a {
 @media print {
   body {
     background-color: #FFF;
-    font-family: "Timesi New Roman", Times, serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: 14px;
   }
 
