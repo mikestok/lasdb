@@ -1,17 +1,23 @@
-# Utility class to load the database from the YAML file e.g.
+#!/usr/bin/env ruby
 #
-# rails c
-# data_dir = '../suzanne-lasdb-data'; $: << data_dir; require 'questions_loader'
-# Question.delete_all; Answer.delete_all; Category.delete_all
-# QuestionsLoader.load_file("#{data_dir}/questions.yaml")
+# This loads the file which is passed on the command line into the database.
+#
+# The input is expected to be a YAML file generated from the original MS Word document.
+#
+# Expected usage:
+#
+# rm rb/development.sqlite3
+# rake db:migrate
+# script/load-from-file <filename>
  
+require File.expand_path('../../config/environment',  __FILE__)
+
 class QuestionsLoader
   require 'yaml'
   YAML::ENGINE.yamler = 'syck'
 
-  def self.load_file(filename)
-    data = File.read(filename)
-    questions = YAML.load(data)
+  def self.load(stream)
+    questions = YAML.load(stream.read)
 
     questions.each do |q_struct|
       store q_struct
@@ -43,3 +49,5 @@ class QuestionsLoader
     c
   end
 end
+
+QuestionsLoader.load(ARGF)
