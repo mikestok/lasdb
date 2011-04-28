@@ -9,6 +9,19 @@
 # rm rb/development.sqlite3
 # rake db:migrate
 # script/load-from-file <filename>
+#
+# Sample stanza:
+#
+# ---
+# - :prompt: What is the best programming language
+#   :responses:
+#   - :text: Java
+#   - :text: Python
+#   - :text: Perl
+#   - :text: Ruby
+#     :correct: true
+#   :category: Programming Languages
+#   :subcategory: Obvious
  
 require File.expand_path('../../config/environment',  __FILE__)
 
