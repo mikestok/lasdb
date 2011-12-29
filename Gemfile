@@ -9,6 +9,7 @@ gem "thin"
 
 group :production do
   gem "pg"
+  gem "rack-ssl", :require => "rack/ssl"
 end
 
 group :development, :test do

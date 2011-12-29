@@ -30,6 +30,9 @@ and SECRET to be set up on Heroku.  This can be done using
     heroku config:add USERNAME='username' --app whatever
     heroku config:add SECRET='secret' --app whatever
 
+As this is using basic auth we need to force the use of SSL, and this 
+in turn assumes the Piggyback SSL addon has been added on in Heroku.
+
 Backups
 -------
 
