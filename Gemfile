@@ -7,5 +7,6 @@ gem "acts_as_tree_rails3"
 
 gem "nifty-generators", :group => :development
 gem "taps", :group => :development
+gem "heroku", :group => :development
 
 gem "mocha", :group => :test
