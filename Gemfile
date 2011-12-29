@@ -5,8 +5,12 @@ gem 'sqlite3'
 gem "jquery-rails"
 gem "acts_as_tree_rails3"
 
-gem "nifty-generators", :group => :development
-gem "taps", :group => :development
-gem "heroku", :group => :development
+group :development do
+  gem "nifty-generators"
+  gem "taps"
+  gem "heroku"
+end
 
-gem "mocha", :group => :test
+group :test do
+  gem "mocha"
+end
