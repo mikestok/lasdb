@@ -1,4 +1,7 @@
 SuzanneLasdb::Application.configure do
+  config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Production") do |u, p|
+    [u, p] == [ENV['USERNAME'], ENV['SECRET']]
+  end
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.

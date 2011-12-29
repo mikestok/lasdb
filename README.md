@@ -21,6 +21,15 @@ Currently as I'm the only person working on this the relases are
 numbered *yyyy-mm-dd-*r*n* where *n* is the number of the release for
 that day.
 
+Access Control
+--------------
+
+For some security the production version of the app requires a USERNAME
+and SECRET to be set up on Heroku.  This can be done using
+
+    heroku config:add USERNAME='username' --app whatever
+    heroku config:add SECRET='secret' --app whatever
+
 Backups
 -------
 
