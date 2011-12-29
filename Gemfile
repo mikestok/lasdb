@@ -9,6 +9,7 @@ gem "thin"
 
 group :production do
   gem "pg"
+  gem "newrelic_rpm"
   gem "rack-ssl", :require => "rack/ssl"
 end
 
