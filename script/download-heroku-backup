@@ -1,0 +1,38 @@
+#!/bin/bash
+#
+# simple script to grab the latest heroku backup from heroku
+
+function get_last_backup_id {
+  local backups
+  
+  # If there is no backup data yet for the application then we need
+  # to create it.
+  backups=$(heroku pgbackups)
+  if [ "$?" -ne 0 ]; then
+    heroku pgbackups:capture
+    backups=$(heroku pgbackups)
+    if [ "$?" -ne 0 ]; then
+      exit 1
+    fi
+  fi
+
+  backup_id=$(echo "$backups" | tail -1 | cut -d'|' -f1)
+}
+
+function copy_last_backup_file {
+  local dir="${1:?missing directory name}"
+  local id="${2:?missing backup file id}"
+  local backup_file="$backup_dir/$backup_id"
+  if [ -f "$backup_file" ]; then
+    echo "Already have a copy of the latest backup data in $backup_file"
+  else
+    echo "Loading latest backup into $backup_file"
+    curl -o "$backup_file" $(heroku pgbackups:url $backup_id)
+  fi
+}
+
+backup_dir=database-backups
+backup_id=""
+
+get_last_backup_id
+copy_last_backup_file "$backup_dir" "$backup_id"

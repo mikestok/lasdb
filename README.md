@@ -6,6 +6,15 @@ Purpose
 
 This is a Ruby on Rails project for exploration.
 
+Database Backups
+----------------
+
+Run
+
+    script/download-heroku-backup
+
+to get the latest database backup (assumes PG Backups addon is installed).
+
 Development
 -----------
 
