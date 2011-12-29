@@ -21,6 +21,15 @@ Currently as I'm the only person working on this the relases are
 numbered *yyyy-mm-dd-*r*n* where *n* is the number of the release for
 that day.
 
+Backups
+-------
+
+See http://devcenter.heroku.com/articles/pgbackups for information on
+the Heroku PGBackups add-on.
+
+I have added database-backups/ to .gitignore so that I can stash the
+backups on a development machine without polluting git.
+
 Author
 ------
 
