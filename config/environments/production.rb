@@ -1,5 +1,5 @@
 SuzanneLasdb::Application.configure do
-  config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  config.force_ssl = true
   config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Production") do |u, p|
     [u, p] == [ENV['USERNAME'], ENV['SECRET']]
   end
@@ -50,4 +50,8 @@ SuzanneLasdb::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Compress both stylesheets and JavaScripts
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :scss
 end
