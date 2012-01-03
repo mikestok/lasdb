@@ -6,6 +6,11 @@ gem "acts_as_tree_rails3"
 gem "foreman"
 gem "thin"
 
+group :assets do
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
 
 group :production do
   gem "pg"
