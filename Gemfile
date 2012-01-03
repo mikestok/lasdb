@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails'
 gem "jquery-rails"
 gem "acts_as_tree_rails3"
 gem "foreman"
