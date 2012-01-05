@@ -4,7 +4,10 @@
   Category: <%= @question.full_category_name %>
 </p>
 
-<%= render 'question', :q => @question %>
+<%= render 'question',
+  :prompt  => @question.prompt,
+  :answers => @question.answer_list
+%>
 
 <p>
   Added to database: <%= @question.created_at %><br/>
