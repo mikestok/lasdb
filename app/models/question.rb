@@ -1,4 +1,28 @@
 class Question < ActiveRecord::Base
+  # This class encapuslates the conversion of {{ref}} in a piece of
+  # text to the appropriate tag.
+  class RefResolver
+    # in: list of references
+    #     list of tags
+    #
+    # sets up state so we can later map any non-blank 
+    # references to the associated tag.
+    def initialize(ref_list, tag_list)
+      @ref_to_tag = {}
+      ref_list.zip(tag_list).each do |ref, tag|
+        @ref_to_tag[ref] = tag if tag
+      end
+    end
+
+    def resolve_refs(text)
+      result = text.dup
+      @ref_to_tag.each_pair do |ref, tag|
+        result.gsub!(/{{#{ref}}}/, tag)
+      end
+      return result
+    end
+  end
+
   attr_accessible :prompt,
     :category_id,
     :answers, :answers_attributes
@@ -38,14 +62,12 @@ class Question < ActiveRecord::Base
   # out:
   def answer_list
     tags = tag_list
-    tag_for = ref_to_tag(tags)
+    res = RefResolver.new(answers.map(&:ref), tags)
 
     answers.each.collect do |a|
-      text = translate_refs(a.text, tag_for)
-
       OpenStruct.new({
         :tag     => tags.shift,
-        :text    => text,
+        :text    => res.resolve_refs(a.text),
         :correct => a.correct,
       })
     end
@@ -65,25 +87,4 @@ class Question < ActiveRecord::Base
     return tags
   end
 
-  # in: tag list
-  # out: hash mapping question's refs to tag names
-  def ref_to_tag(tag_list)
-    map = {}
-    answers.each_with_index do |a, i|
-      if a.ref
-        map[a.ref] = tag_list[i]
-      end
-    end
-
-    return map
-  end
-
-  def translate_refs(text, map)
-    result = text.dup
-    map.each_pair do |ref, tag|
-      result.gsub!(/{{#{ref}}}/, tag)
-    end
-
-    return result
-  end
 end
