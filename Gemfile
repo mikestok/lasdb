@@ -26,6 +26,7 @@ group :development do
   gem "nifty-generators"
   gem "taps"
   gem "heroku"
+  gem "annotate"
 end
 
 group :test do
