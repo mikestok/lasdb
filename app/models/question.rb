@@ -8,10 +8,12 @@ class Question < ActiveRecord::Base
     # sets up state so we can later map any non-blank 
     # references to the associated tag.
     def initialize(ref_list, tag_list)
-      @ref_to_tag = {}
-      ref_list.zip(tag_list).each do |ref, tag|
-        @ref_to_tag[ref] = tag if tag
-      end
+      @ref_to_tag =
+        ref_list.zip(tag_list).
+        reject {|pair| pair[0].blank? }.
+        inject({}) do |hash, pair|
+          hash.merge({ pair[0] => pair[1] })
+        end
     end
 
     def resolve_refs(text)
