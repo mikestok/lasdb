@@ -66,3 +66,15 @@ class Question < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: questions
+#
+#  id          :integer         primary key
+#  prompt      :text
+#  created_at  :timestamp
+#  updated_at  :timestamp
+#  category_id :integer
+#
+

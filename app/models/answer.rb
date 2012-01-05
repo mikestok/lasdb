@@ -7,3 +7,17 @@ class Answer < ActiveRecord::Base
     :scope => :question_id,
     :allow_blank => true
 end
+
+# == Schema Information
+#
+# Table name: answers
+#
+#  id          :integer         primary key
+#  question_id :integer
+#  text        :text
+#  correct     :boolean
+#  created_at  :timestamp
+#  updated_at  :timestamp
+#  ref         :text(5)
+#
+
