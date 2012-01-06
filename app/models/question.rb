@@ -39,7 +39,7 @@ class Question < ActiveRecord::Base
   # in:
   # out:
   def answer_list(opts={})
-    list = opts[:shuffled] ? answers.shuffle : answers
+    list = opts[:shuffled] ? shuffled_answers : answers
 
     tags = tag_list
     res = RefResolver.new(list.map(&:ref), tags)
@@ -54,6 +54,20 @@ class Question < ActiveRecord::Base
   end
 
   private
+
+  def shuffled_answers
+    shufflable_indices = []
+    answers.each_with_index do |a, i|
+      shufflable_indices << i unless a.anchored?
+    end
+
+    shuffled = answers.dup
+    shufflable_indices.zip(shufflable_indices.shuffle).each do |pair|
+      shuffled[pair[0]] = answers[pair[1]]
+    end
+
+    shuffled
+  end
 
   # in: nothing
   # out: list ot tags the right length for this questions answers
