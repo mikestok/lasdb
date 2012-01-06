@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20120106024646) do
 
   create_table "answers", :force => true do |t|
-    t.integer   "question_id"
-    t.text      "text"
-    t.boolean   "correct"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.text      "ref",         :limit => 5
-    t.integer   "position"
-    t.boolean   "anchored"
+    t.integer  "question_id"
+    t.text     "text"
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ref",         :limit => 5
+    t.integer  "position"
+    t.boolean  "anchored"
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
