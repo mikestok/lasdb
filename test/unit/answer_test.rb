@@ -8,6 +8,7 @@ class AnswerTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: answers
@@ -20,5 +21,6 @@ end
 #  updated_at  :timestamp
 #  ref         :text(5)
 #  position    :integer
+#  anchored    :boolean
 #
 
