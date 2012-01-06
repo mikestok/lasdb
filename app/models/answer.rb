@@ -1,5 +1,7 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
+  acts_as_list :scope => :question
+
   validates_format_of :ref,
     :with => /\A[A-Za-z0-9]{1,5}\Z/,
     :allow_blank => true
@@ -7,6 +9,7 @@ class Answer < ActiveRecord::Base
     :scope => :question_id,
     :allow_blank => true
 end
+
 
 # == Schema Information
 #
@@ -19,5 +22,6 @@ end
 #  created_at  :timestamp
 #  updated_at  :timestamp
 #  ref         :text(5)
+#  position    :integer
 #
 

@@ -7,6 +7,7 @@ class AnswerTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: answers
@@ -18,5 +19,6 @@ end
 #  created_at  :timestamp
 #  updated_at  :timestamp
 #  ref         :text(5)
+#  position    :integer
 #
 
