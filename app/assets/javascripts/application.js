@@ -36,7 +36,7 @@ function add_fields(link, association, content) {
 function add_fields_to_list(link, association, content) {
 	var new_id = new Date().getTime();
 	var regexp = new RegExp("new_" + association, "g");
-  var old_html = $(link).parent().prev("ol").html();
+  var old_html = $(link).parent().prev("ul").html();
   var new_html = old_html + content.replace(regexp, new_id);
-  $(link).parent().prev("ol").html(new_html);
+  $(link).parent().prev("ul").html(new_html);
 }

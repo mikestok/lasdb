@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 gem "jquery-rails"
 gem "acts_as_tree_rails3"
+gem "acts_as_list"
 gem "foreman"
 gem "thin"
 
@@ -26,6 +27,7 @@ group :development do
   gem "nifty-generators"
   gem "taps"
   gem "heroku"
+  gem "annotate"
 end
 
 group :test do

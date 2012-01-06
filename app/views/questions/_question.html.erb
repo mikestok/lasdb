@@ -1,8 +1,13 @@
-<p>
-  <%= q.prompt %>
-</p>
-<ol type="a">
-  <% for answer in q.answers %>
-  <li><%= answer.text %></li>
-  <% end %>
-</ol>
+<div class="question" id="<%= id %>">
+  <p>
+    <%= prompt %>
+  </p>
+  <table class="answers_table">
+    <% answers.each do |a| %>
+      <tr class="<%= a.correct ? 'correct' : 'incorrect' %>">
+      <td class="tag"><%= a.tag %>.</td>
+      <td class="text"><%= a.text %></td>
+    </tr>
+    <% end %> 
+  </table>
+</div>

@@ -25,3 +25,15 @@ class CategoryTest < ActiveSupport::TestCase
     assert_equal e, e.shuffle.sort
   end
 end
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer         primary key
+#  name       :string(255)
+#  parent_id  :integer
+#  created_at :timestamp
+#  updated_at :timestamp
+#
+
