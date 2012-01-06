@@ -4,6 +4,8 @@ SuzanneLasdb::Application.routes.draw do
   resources :questions
   resources :categories
 
+  match "questions/:id/shuffle_answers" => "questions#shuffle_answers"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

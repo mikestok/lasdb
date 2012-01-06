@@ -11,32 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110423012231) do
+ActiveRecord::Schema.define(:version => 20120106024646) do
 
   create_table "answers", :force => true do |t|
-    t.integer  "question_id"
-    t.text     "text"
-    t.boolean  "correct"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "question_id"
+    t.text      "text"
+    t.boolean   "correct"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.text      "ref",         :limit => 5
+    t.integer   "position"
+    t.boolean   "anchored"
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.integer   "parent_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
 
   create_table "questions", :force => true do |t|
-    t.text     "prompt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "category_id"
+    t.text      "prompt"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "category_id"
   end
 
   add_index "questions", ["category_id"], :name => "index_questions_on_category_id"

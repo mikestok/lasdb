@@ -4,7 +4,11 @@
   Category: <%= @question.full_category_name %>
 </p>
 
-<%= render 'question', :q => @question %>
+<%= render 'question',
+  :id      => @question.id,
+  :prompt  => @question.prompt,
+  :answers => @question.answer_list
+%>
 
 <p>
   Added to database: <%= @question.created_at %><br/>
@@ -12,6 +16,7 @@
 </p>
 
 <p>
+<%= button_to "Shuffle Answers", { :id => @question, :controller => :questions, :action => :shuffle_answers }, {:remote => true } %>
   <%= link_to "Edit", edit_question_path(@question) %> |
   <%= link_to "Destroy", @question, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", questions_path %>
