@@ -11,6 +11,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def shuffle_answers
+    @question = Question.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # in: category id (possibly nil)
   #     include subcategories flag
   # out: something we can pass to find_all_by_category_id

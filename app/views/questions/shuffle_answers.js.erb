@@ -1,0 +1,8 @@
+$("div.question#<%= @question.id %>").html("<%=
+ j render(:partial => 'question',
+          :locals => {
+            :prompt  => @question.prompt,
+            :answers => @question.answer_list(:shuffled => true)
+          }
+         )
+%>");

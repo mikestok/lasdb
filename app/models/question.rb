@@ -38,11 +38,13 @@ class Question < ActiveRecord::Base
 
   # in:
   # out:
-  def answer_list
-    tags = tag_list
-    res = RefResolver.new(answers.map(&:ref), tags)
+  def answer_list(opts={})
+    list = opts[:shuffled] ? answers.shuffle : answers
 
-    answers.each.collect do |a|
+    tags = tag_list
+    res = RefResolver.new(list.map(&:ref), tags)
+
+    list.each.collect do |a|
       OpenStruct.new({
         :tag     => tags.shift,
         :text    => res.resolve_refs(a.text),
