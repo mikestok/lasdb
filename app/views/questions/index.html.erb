@@ -9,10 +9,12 @@
       <tr>
         <td>
           <%= render question,
+            :id     => question.id,
             :prompt => question.prompt,
             :answers => question.answer_list
           %>
         </td>
+        <td class="non_printing"><%= button_to "Shuffle", { :id => question, :controller => :questions, :action => :shuffle_answers }, {:remote => true } %></td>
         <td class="non_printing"><%= link_to "Show", question %></td>
         <td class="non_printing"><%= link_to "Edit", edit_question_path(question) %></td>
         <td class="non_printing"><%= link_to "Destroy", question, :confirm => 'Are you sure?', :method => :delete %></td>

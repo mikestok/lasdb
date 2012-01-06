@@ -4,12 +4,11 @@
   Category: <%= @question.full_category_name %>
 </p>
 
-<div class="question" id="<%= @question.id %>">
 <%= render 'question',
+  :id      => @question.id,
   :prompt  => @question.prompt,
   :answers => @question.answer_list
 %>
-</div>
 
 <p>
   Added to database: <%= @question.created_at %><br/>
