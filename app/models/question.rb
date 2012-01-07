@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
     :category_id,
     :answers, :answers_attributes
   belongs_to :category
-  has_many :answers, :dependent => :destroy
+  has_many :answers, :dependent => :destroy, :order => "position"
   accepts_nested_attributes_for :answers,
     :reject_if => lambda { |a| a[:text].blank? },
     :allow_destroy => true
