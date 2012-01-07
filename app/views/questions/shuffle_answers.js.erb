@@ -1,4 +1,4 @@
-$("div.question#<%= @question.id %>").html("<%=
+$("div#<%= j @target_div_id %>").html("<%=
  j render(:partial => 'question',
           :locals => {
             :id      => @question.id,
