@@ -12,7 +12,8 @@ class QuestionsController < ApplicationController
   end
 
   def shuffle_answers
-    @question = Question.find(params[:id])
+    @question      = Question.find(params[:id])
+    @target_div_id = params[:target_div_id]
     respond_to do |format|
       format.js
     end
