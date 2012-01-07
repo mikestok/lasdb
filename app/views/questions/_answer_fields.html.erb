@@ -1,11 +1,7 @@
-<li class="fields">
-  <p>
-    <%= f.text_field :ref, :size => 5 %>
-    <%= f.text_area :text, :rows => 1 %>
-    <%= f.label :correct, "Correct?" %>
-    <%= f.check_box :correct %>
-    <%= f.label :anchored, "Anchored?" %>
-    <%= f.check_box :anchored %><br />
-    <%= button_to_remove_fields "Remove Answer", f %>
-  </p>
-</li>
+<tr class="fields">
+  <td><%= f.text_field :ref, :size => 5 %></td>
+  <td><%= f.text_area :text, :rows => 1 %></td>
+  <td><%= f.check_box :correct %></td>
+  <td><%= f.check_box :anchored %></td>
+  <td><%= button_to_remove_fields "Remove Answer", f %></td>
+</tr>

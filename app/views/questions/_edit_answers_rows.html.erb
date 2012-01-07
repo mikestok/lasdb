@@ -1,0 +1,10 @@
+<tr>
+  <th>Ref</th>
+  <th>Text</th>
+  <th>Correct?</th>
+  <th>Anchored?</th>
+  <th><!-- Remove answer control column --></th>
+</td>
+<%= f.fields_for :answers do |builder| %>
+  <%= render 'answer_fields', :f => builder %>
+<% end %> 

@@ -8,11 +8,9 @@
     <%= f.label :prompt %><br />
     <%= f.text_area :prompt, :rows => 3%>
   </p>
-  <ul>
-  <%= f.fields_for :answers do |builder| %>
-    <%= render 'answer_fields', :f => builder %>
-  <% end %>
-  </ul>
-  <p><%= button_to_add_fields_to_list "Add Answer", f, :answers %></p>
+  <table class="edit_answers">
+    <%= render :partial => "edit_answers_rows", :locals => {:f => f} %>
+  </table>
+  <p><%= button_to_add_answer_to_table "Add Answer", f, :answers %></p>
   <p><%= f.submit %></p>
 <% end %>
