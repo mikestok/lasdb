@@ -19,7 +19,6 @@
   %>
   <% if @question.id %>
   <%= render :partial => "edit_answers_table", :locals => {:f => f} %>
-  <p><%= add_answer_control(f, "Add an Answer") %></p>
   <% end %>
   <p><%= f.submit %></p>
 <% end %>

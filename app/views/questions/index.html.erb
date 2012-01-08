@@ -16,7 +16,7 @@
           </div>
         </td>
         <td class="non_printing">
-          <%= button_to "Shuffle",
+          <%= link_to make_icon_tag("switch", :title => "Shuffle answers"),
             { :id => question,
               :controller => :questions,
               :action => :shuffle_answers,
@@ -24,12 +24,26 @@
             }, {:remote => true }
           %>
         </td>
-        <td class="non_printing"><%= link_to "Show", question %></td>
-        <td class="non_printing"><%= link_to "Edit", edit_question_path(question) %></td>
-        <td class="non_printing"><%= link_to "Destroy", question, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td class="non_printing">
+          <%= link_to make_icon_tag("forward", :title => "Show question"),
+            question %>
+        </td>
+        <td class="non_printing">
+          <%= link_to make_icon_tag("edit", :title => "Edit question"),
+            edit_question_path(question) %>
+        </td>
+        <td class="non_printing">
+          <%= link_to make_icon_tag("trash", :title => "Delete question"),
+            question,
+            :confirm => 'Are you sure?',
+            :method => :delete %>
+        </td>
       </tr>
     <% end %>
   </table>
 <% end %>
 
-<p class="non_printing"><%= link_to "New Question", new_question_path %></p>
+<p class="non_printing">
+<%= link_to make_icon_tag("add", :title => "Add a New Question"),
+  new_question_path %>
+</p>

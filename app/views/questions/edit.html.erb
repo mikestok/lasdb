@@ -21,7 +21,7 @@
   </li>
 </ul>
 
-<p>
-  <%= link_to "Show", @question %> |
-  <%= link_to "View All", questions_path %>
+<p class="non-printing">
+<%= link_to make_icon_tag("back", :titile => "Show this Question"),
+  @question %>
 </p>

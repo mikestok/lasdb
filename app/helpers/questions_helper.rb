@@ -44,7 +44,15 @@ module QuestionsHelper
   # Used in app/views/edit_answer_row.html.erb
   def move_answer_control(f, direction)
     answer = f.object
-    link_to direction.capitalize, {
+    image_link = case direction
+                 when "up"
+                   make_icon_tag "arrow2_n",
+                     :title => "Move answer up"
+                 when "down"
+                   make_icon_tag "arrow2_s", 
+                     :title => "Move answer down"
+                 end
+    link_to image_link, {
       :controller => :questions,
       :id         => answer.question.id,
       :action     => :move_answer,
@@ -61,9 +69,9 @@ module QuestionsHelper
     }
   end
 
-  def delete_answer_control(f, label)
+  def delete_answer_control(f)
     answer = f.object
-    link_to label.capitalize, {
+    link_to make_icon_tag("trash", :title => "Delete answer"), {
       :controller => :questions,
       :id         => answer.question.id,
       :action     => :delete_answer,
@@ -76,9 +84,9 @@ module QuestionsHelper
     }
   end
 
-  def add_answer_control(f, label)
+  def add_answer_control(f)
     question = f.object
-    link_to label.capitalize, {
+    link_to make_icon_tag("add", :title => "Add an answer"), {
       :controller => :questions,
       :id         => question.id,
       :action     => :add_answer,
@@ -88,5 +96,4 @@ module QuestionsHelper
       :method => :post,
     }
   end
-
 end
