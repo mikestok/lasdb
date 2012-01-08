@@ -10,8 +10,16 @@
 </td>
 <%= f.fields_for :answers do |a| %>
 <tr class="answer">
-  <td><%= move_answer_control(a, "up") %></td>
-  <td><%= move_answer_control(a, "down") %></td>
+  <td><%= if a.object.first? 
+            make_icon_tag("blank", :title => "")
+          else
+            move_answer_control(a, "up")
+          end %></td>
+  <td><%= if a.object.last? 
+            make_icon_tag("blank", :title => "")
+          else
+            move_answer_control(a, "down")
+          end %></td>
   <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
   <td><%= a.text_area :text, :rows => 1, :class => "change-answer-content" %></td>
   <td><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
@@ -20,7 +28,8 @@
 </tr>
 <% end %> 
 <tr class="add-answer">
-  <td colspan="2"><!-- skip up & down --></td>
+  <td><%= make_icon_tag "blank", :title => "" %></td>
+  <td><%= make_icon_tag "blank", :title => "" %></td>
   <td colspan="4"><!-- skip per-answer data --></td>
   <td><%= add_answer_control(f) %></td>
 </tr>

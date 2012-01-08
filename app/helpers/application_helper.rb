@@ -5,8 +5,16 @@ module ApplicationHelper
     colour = "blue"
     size   = "16x16"
     format = "png"
-    file   =
-      ["icons", format, colour, size, "#{image_name}.#{format}"].join('/')
+    file   = if image_name == "blank"
+               "blank.gif"
+             else
+               ["icons",
+                format,
+                colour,
+                size,
+                "#{image_name}.#{format}",
+               ].join('/')
+             end
 
     opts[:size] ||= size
     image_tag file, opts          
