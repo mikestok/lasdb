@@ -14,6 +14,10 @@ module ApplicationHelper
       :answer_id  => answer.id,
     },
     { 
+      # The move answer control class is used to allow them to be hidden
+      # when answer content is changed.  For the move to be safe the answer
+      # needs to have been saved.
+      :class  => "move-answer-control",
       :remote => true,
       :method => :post,
     }
