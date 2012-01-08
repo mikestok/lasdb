@@ -17,3 +17,12 @@ jQuery(document).ready ($) ->
   answer_movers = "table.answers .move-answer-control"
   $(document).delegate answer_changers, "change", (event) ->
     $(answer_movers).hide()
+
+  # This uses https://github.com/padolsey/jQuery.fn.autoResize.
+  # I make a function so that questions/move_answer.js.erb can 
+  # update it the same way whe the question is re-rendered.
+  $.setUpAutoResize = ->
+    $("form.edit_question textarea").autoResize {
+      extraSpace: 5
+    }
+  $.setUpAutoResize()
