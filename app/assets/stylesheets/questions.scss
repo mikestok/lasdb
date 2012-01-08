@@ -1,5 +1,24 @@
 // Highlight the correct answer in the display
 
-table.answers_table tr.correct {
-  background-color: yellow;
+// answers_table is used for displaying answers
+table.answers_table {
+  th, td {
+    vertical-align: top;
+  }
+
+  tr.correct {
+    background-color: yellow;
+  }
+}
+
+// answers is the table used for the table of answers while editing a
+// question
+table.answers {
+  th, td {
+    vertical-align: top;
+  }
+
+  td.check-box-cell {
+    text-align: center;
+  }
 }
