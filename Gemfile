@@ -28,6 +28,7 @@ group :development do
   gem "taps"
   gem "heroku"
   gem "annotate"
+  gem "ruby-debug19"
 end
 
 group :test do
