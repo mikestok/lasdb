@@ -2,4 +2,7 @@
 
 <%= render "down_from", :categories => @root_categories %>
 
-<p class="non_printing"><%= link_to "New Category", new_category_path %></p>
+<p class="non_printing">
+<%= link_to make_icon_tag("add", :title => "Add a New Category"),
+  new_category_path %>
+</p>

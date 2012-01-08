@@ -4,7 +4,9 @@
   Name: <%= @category.name %>
 </p>
 
-<p>
-  <%= link_to "Edit", edit_category_path(@category) %>
-  <%= link_to "View All", categories_path %>
+<p class="non-printing">
+<%= link_to make_icon_tag("edit", :title => "Edit category"),
+  edit_category_path(@category) %>
+<%= link_to make_icon_tag("back", :title => "View All Categories"),
+  categories_path %>
 </p>
