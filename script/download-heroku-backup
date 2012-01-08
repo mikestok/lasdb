@@ -16,7 +16,7 @@ function get_last_backup_id {
     fi
   fi
 
-  backup_id=$(echo "$backups" | tail -1 | cut -d'|' -f1)
+  backup_id=$(echo "$backups" | tail -1 | cut -d'|' -f1 | sed -e 's/ //g')
 }
 
 function copy_last_backup_file {
