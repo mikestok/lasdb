@@ -12,7 +12,7 @@
 <tr class="answer">
   <td><%= a.text_field :ref, :size => 5 %></td>
   <td><%= a.text_area :text, :rows => 1 %></td>
-  <td><%= a.check_box :correct %></td>
+  <td><%= a.check_box :correct, :class => "radio-like" %></td>
   <td><%= a.check_box :anchored %></td>
   <td><%= move_answer_control(a, "up") %></td>
   <td><%= move_answer_control(a, "down") %></td>
