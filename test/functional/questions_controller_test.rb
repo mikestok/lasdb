@@ -25,7 +25,7 @@ class QuestionsControllerTest < ActionController::TestCase
   def test_create_valid
     Question.any_instance.stubs(:valid?).returns(true)
     post :create
-    assert_redirected_to question_url(assigns(:question))
+    assert_redirected_to edit_question_url(assigns(:question))
   end
 
   def test_edit

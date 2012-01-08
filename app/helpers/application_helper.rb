@@ -1,19 +1,49 @@
 module ApplicationHelper
-  def button_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + button_to_function(name, "remove_fields(this)")
+  # in:
+  #  * a form helper
+  #  * the direction
+  # 
+  # Used in app/views/edit_answer_row.html.erb
+  def move_answer_control(f, direction)
+    answer = f.object
+    link_to direction.capitalize, {
+      :controller => :questions,
+      :id         => answer.question.id,
+      :action     => :move_answer,
+      :direction  => direction,
+      :answer_id  => answer.id,
+    },
+    { 
+      :remote => true,
+      :method => :post,
+    }
   end
 
-  # Note to self:
-  #
-  # name = text of the link
-  # f = a form 
-  # association = the type of thing associated with the form (e.g. :answers
-  # for a question form)
-  def button_to_add_fields_to_list(name, f, association)
-    new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", :f => builder)
-    end
-    button_to_function(name, %Q/add_fields_to_list(this, "#{association}", "#{escape_javascript(fields)}")/)
+  def delete_answer_control(f, label)
+    answer = f.object
+    link_to label.capitalize, {
+      :controller => :questions,
+      :id         => answer.question.id,
+      :action     => :delete_answer,
+      :answer_id  => answer.id,
+    },
+    { 
+      :remote => true,
+      :method => :post,
+    }
   end
+
+  def add_answer_control(f, label)
+    question = f.object
+    link_to label.capitalize, {
+      :controller => :questions,
+      :id         => question.id,
+      :action     => :add_answer,
+    },
+    { 
+      :remote => true,
+      :method => :post,
+    }
+  end
+
 end
