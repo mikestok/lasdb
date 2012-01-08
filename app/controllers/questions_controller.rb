@@ -4,10 +4,11 @@ class QuestionsController < ApplicationController
       @questions = Question.find_all_by_category_id(
         make_category_id_filter_condition(
           params[:filter_category_id], params[:include_subcategories]
-        )
+        ),
+        :include => [:answers, :category]
       )
     else
-      @questions = Question.all
+      @questions = Question.all(:include => [:answers, :category])
     end
   end
 
@@ -64,7 +65,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    load_question_answers_and_category
   end
 
   def new
@@ -81,11 +82,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:id])
+    load_question_answers_and_category
   end
 
   def update
-    @question = Question.find(params[:id])
+    load_question_answers_and_category
     if @question.update_attributes(params[:question])
       redirect_to @question, :notice  => "Successfully updated question."
     else
@@ -94,8 +95,16 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
-    @question.destroy
+    Question.find(params[:id]).destroy
     redirect_to questions_url, :notice => "Successfully destroyed question."
+  end
+
+  private
+
+  def load_question_answers_and_category
+    @question = Question.find(
+      params[:id],
+      :include => [:answers, :category]
+    )
   end
 end
