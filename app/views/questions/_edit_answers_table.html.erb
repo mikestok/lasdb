@@ -1,0 +1,22 @@
+<table class="answers">
+<tr>
+  <th>Ref</th>
+  <th>Text</th>
+  <th>Correct?</th>
+  <th>Anchored?</th>
+  <th><!-- Move answer up column --></th>
+  <th><!-- Move answer down column --></th>
+  <th><!-- Remove answer control column --></th>
+</td>
+<%= f.fields_for :answers do |a| %>
+<tr class="answer">
+  <td><%= a.text_field :ref, :size => 5 %></td>
+  <td><%= a.text_area :text, :rows => 1 %></td>
+  <td><%= a.check_box :correct %></td>
+  <td><%= a.check_box :anchored %></td>
+  <td><%= move_answer_control(a, "up") %></td>
+  <td><%= move_answer_control(a, "down") %></td>
+  <td><%= delete_answer_control(a, "delete") %></td>
+</tr>
+<% end %> 
+</table>
