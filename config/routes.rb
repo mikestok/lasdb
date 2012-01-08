@@ -5,6 +5,9 @@ SuzanneLasdb::Application.routes.draw do
   resources :categories
 
   match "questions/:id/shuffle_answers" => "questions#shuffle_answers"
+  match "questions/:id/move_answer"     => "questions#move_answer"
+  match "questions/:id/delete_answer"   => "questions#delete_answer"
+  match "questions/:id/add_answer"      => "questions#add_answer"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

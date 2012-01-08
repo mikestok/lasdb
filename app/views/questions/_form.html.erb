@@ -11,6 +11,6 @@
   <table class="edit_answers">
     <%= render :partial => "edit_answers_rows", :locals => {:f => f} %>
   </table>
-  <p><%= button_to_add_answer_to_table "Add Answer", f, :answers %></p>
+  <p><%= add_answer_control(f, "Add an Answer") %></p>
   <p><%= f.submit %></p>
 <% end %>

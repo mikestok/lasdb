@@ -3,5 +3,7 @@
   <td><%= f.text_area :text, :rows => 1 %></td>
   <td><%= f.check_box :correct %></td>
   <td><%= f.check_box :anchored %></td>
-  <td><%= button_to_remove_fields "Remove Answer", f %></td>
+  <td><%= move_answer_control(f, "up") %></td>
+  <td><%= move_answer_control(f, "down") %></td>
+  <td><%= delete_answer_control(f, "delete") %></td>
 </tr>

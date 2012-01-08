@@ -3,8 +3,10 @@
   <th>Text</th>
   <th>Correct?</th>
   <th>Anchored?</th>
+  <th><!-- Move answer up column --></th>
+  <th><!-- Move answer down column --></th>
   <th><!-- Remove answer control column --></th>
 </td>
 <%= f.fields_for :answers do |builder| %>
-  <%= render 'answer_fields', :f => builder %>
+  <%= render :partial => 'edit_answer_row', :locals => { :f => builder } %>
 <% end %> 

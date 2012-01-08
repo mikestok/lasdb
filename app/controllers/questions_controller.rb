@@ -19,6 +19,36 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def move_answer
+    @question = Question.find(params[:id])
+    answer = Answer.find(params[:answer_id])
+    case params[:direction]
+    when "up" then answer.move_higher
+    when "down" then answer.move_lower
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_answer
+    @question = Question.find(params[:id])
+    answer = Answer.find(params[:answer_id])
+    answer.destroy
+    respond_to do |format|
+      format.js { render "move_answer" }
+    end
+  end
+
+  def add_answer
+    @question = Question.find(params[:id])
+    Answer.create(:text => 'a new answer', :question_id => @question.id).move_to_bottom
+    respond_to do |format|
+      format.js { render "move_answer" }
+    end
+  end
+
+
   # in: category id (possibly nil)
   #     include subcategories flag
   # out: something we can pass to find_all_by_category_id
