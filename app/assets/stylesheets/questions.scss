@@ -1,5 +1,6 @@
 // Highlight the correct answer in the display
 
+// answers_table is used for displaying answers
 table.answers_table {
   th, td {
     vertical-align: top;
@@ -10,8 +11,14 @@ table.answers_table {
   }
 }
 
+// answers is the table used for the table of answers while editing a
+// question
 table.answers {
   th, td {
     vertical-align: top;
+  }
+
+  td.check-box-cell {
+    text-align: center;
   }
 }

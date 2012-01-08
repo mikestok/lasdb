@@ -22,8 +22,8 @@
           end %></td>
   <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
   <td><%= a.text_area :text, :rows => 1, :class => "change-answer-content" %></td>
-  <td><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
-  <td><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
+  <td class="check-box-cell"><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
+  <td class="check-box-cell"><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
   <td><%= delete_answer_control(a) %></td>
 </tr>
 <% end %> 
