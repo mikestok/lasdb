@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :answers,
     :reject_if => lambda { |a| a[:text].blank? },
     :allow_destroy => true
-  validates_presence_of :prompt, :answers
+  validates_presence_of :prompt
 
   require 'ref_resolver'
 

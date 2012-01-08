@@ -69,15 +69,12 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    # Assume that if we are making a question there will be at least
-    # one answer to it.
-    @question.answers.build
   end
 
   def create
     @question = Question.new(params[:question])
     if @question.save
-      redirect_to @question, :notice => "Successfully created question."
+      redirect_to edit_question_path(@question), :notice => "Successfully created question."
     else
       render :action => 'new'
     end

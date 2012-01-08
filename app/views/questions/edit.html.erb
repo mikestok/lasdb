@@ -4,6 +4,23 @@
 <%= render 'form' %>
 </div>
 
+<h2>Notes</h2>
+
+<ul>
+  <li>
+  The <em>Ref</em> allows you to refer to answers from another answer, 
+  so if there were four answers, the first having a ref of <tt>x</tt> and
+  the third having a ref of <tt>y</tt> then another answer could say
+  <tt>Both {{x}} and {{y}}</tt> and would remain refering to the correct
+  answers even when they are shuffled.
+  </li>
+  <li>
+  The <em>Anchored?</em> check makes sure that an answer stays in the 
+  same place even when the answers are shuffled.  That lets you keep
+  answers like <tt>All of the above</tt> anchored to the bottom.
+  </li>
+</ul>
+
 <p>
   <%= link_to "Show", @question %> |
   <%= link_to "View All", questions_path %>

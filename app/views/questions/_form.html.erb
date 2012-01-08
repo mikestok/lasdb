@@ -8,25 +8,18 @@
     <%= f.label :prompt %><br />
     <%= f.text_area :prompt, :rows => 3%>
   </p>
+  <% # The test for "if @question.id" let me tell if the question has
+     # been saved yet.  If it has just been created, but hasn't been saved
+     # then the JS for adding / moving / deleting answers will not work
+     # (because as it stands it assumes questions have ids so that answers
+     # can be associated with them).
+     #
+     # That's probably the wrong way to do it, but it does mean that I get
+     # something working.
+  %>
+  <% if @question.id %>
   <%= render :partial => "edit_answers_table", :locals => {:f => f} %>
   <p><%= add_answer_control(f, "Add an Answer") %></p>
+  <% end %>
   <p><%= f.submit %></p>
 <% end %>
-
-<h2>Notes</h2>
-
-<ul>
-  <li>
-  The <em>Ref</em> allows you to refer to answers from another answer, 
-  so if there were four answers, the first having a ref of <tt>x</tt> and
-  the third having a ref of <tt>y</tt> then another answer could say
-  <tt>Both {{x}} and {{y}}</tt> and would remain refering to the correct
-  answers even when they are shuffled.
-  </li>
-  <li>
-  The <em>Anchored?</em> check makes sure that an answer stays in the 
-  same place even when the answers are shuffled.  That lets you keep
-  answers like <tt>All of the above</tt> anchored to the bottom.
-  </li>
-</ul>
-
