@@ -1,50 +1,22 @@
 module ApplicationHelper
-  # in:
-  #  * a form helper
-  #  * the direction
-  # 
-  # Used in app/views/edit_answer_row.html.erb
-  def move_answer_control(f, direction)
-    answer = f.object
-    link_to direction.capitalize, {
-      :controller => :questions,
-      :id         => answer.question.id,
-      :action     => :move_answer,
-      :direction  => direction,
-      :answer_id  => answer.id,
-    },
-    { 
-      :remote => true,
-      :method => :post,
-    }
-  end
+  # Make a link to an icon.  In the future the colour, size, and format
+  # might come from application configuration.
+  def make_icon_tag(image_name, opts={})
+    colour = "blue"
+    size   = "16x16"
+    format = "png"
+    file   = if image_name == "blank"
+               "blank.gif"
+             else
+               ["icons",
+                format,
+                colour,
+                size,
+                "#{image_name}.#{format}",
+               ].join('/')
+             end
 
-  def delete_answer_control(f, label)
-    answer = f.object
-    link_to label.capitalize, {
-      :controller => :questions,
-      :id         => answer.question.id,
-      :action     => :delete_answer,
-      :answer_id  => answer.id,
-    },
-    { 
-      :confirm => "Are you sure?",
-      :remote  => true,
-      :method  => :post,
-    }
+    opts[:size] ||= size
+    image_tag file, opts          
   end
-
-  def add_answer_control(f, label)
-    question = f.object
-    link_to label.capitalize, {
-      :controller => :questions,
-      :id         => question.id,
-      :action     => :add_answer,
-    },
-    { 
-      :remote => true,
-      :method => :post,
-    }
-  end
-
 end
