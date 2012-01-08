@@ -28,8 +28,9 @@ module ApplicationHelper
       :answer_id  => answer.id,
     },
     { 
-      :remote => true,
-      :method => :post,
+      :confirm => "Are you sure?",
+      :remote  => true,
+      :method  => :post,
     }
   end
 
