@@ -10,10 +10,10 @@
 </td>
 <%= f.fields_for :answers do |a| %>
 <tr class="answer">
-  <td><%= a.text_field :ref, :size => 5 %></td>
-  <td><%= a.text_area :text, :rows => 1 %></td>
-  <td><%= a.check_box :correct, :class => "radio-like" %></td>
-  <td><%= a.check_box :anchored %></td>
+  <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
+  <td><%= a.text_area :text, :rows => 1, :class => "change-answer-content" %></td>
+  <td><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
+  <td><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
   <td><%= move_answer_control(a, "up") %></td>
   <td><%= move_answer_control(a, "down") %></td>
   <td><%= delete_answer_control(a, "delete") %></td>
