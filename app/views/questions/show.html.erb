@@ -16,7 +16,7 @@
   Most recent change: <%= @question.changed_at %>
 </p>
 
-<p>
+<p class="non-printing">
 <%= link_to make_icon_tag("switch", :title => "Shuffle Answers"),
   { :id            => @question,
     :controller    => :questions,
