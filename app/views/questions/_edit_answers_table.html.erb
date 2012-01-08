@@ -1,22 +1,27 @@
 <table class="answers">
 <tr>
+  <th><!-- Move answer up column --></th>
+  <th><!-- Move answer down column --></th>
   <th>Ref</th>
   <th>Text</th>
   <th>Correct?</th>
   <th>Anchored?</th>
-  <th><!-- Move answer up column --></th>
-  <th><!-- Move answer down column --></th>
-  <th><!-- Remove answer control column --></th>
+  <th><!-- Add / Remove answer control column --></th>
 </td>
 <%= f.fields_for :answers do |a| %>
 <tr class="answer">
+  <td><%= move_answer_control(a, "up") %></td>
+  <td><%= move_answer_control(a, "down") %></td>
   <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
   <td><%= a.text_area :text, :rows => 1, :class => "change-answer-content" %></td>
   <td><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
   <td><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
-  <td><%= move_answer_control(a, "up") %></td>
-  <td><%= move_answer_control(a, "down") %></td>
-  <td><%= delete_answer_control(a, "delete") %></td>
+  <td><%= delete_answer_control(a) %></td>
 </tr>
 <% end %> 
+<tr class="add-answer">
+  <td colspan="2"><!-- skip up & down --></td>
+  <td colspan="4"><!-- skip per-answer data --></td>
+  <td><%= add_answer_control(f) %></td>
+</tr>
 </table>
