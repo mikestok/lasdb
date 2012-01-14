@@ -15,8 +15,7 @@ class QuestionsController < ApplicationController
   def shuffle_answers
     respond_to do |format|
       format.js{
-        params[:shuffled] = true
-        load_question_answers_and_category
+        load_question_answers_and_category(params[:id], :shuffled => true)
         @target_div_id    = params[:target_div_id]
       }
       format.html {
@@ -83,7 +82,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id],
+      :shuffled => params[:shuffled]
   end
 
   def new
@@ -100,11 +100,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id]
   end
 
   def update
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id]
     if @question.update_attributes(params[:question])
       redirect_to @question, :notice  => "Successfully updated question."
     else
@@ -119,11 +119,14 @@ class QuestionsController < ApplicationController
 
   private
 
-  def load_question_answers_and_category
-    @question = Question.find(
-      params[:id],
-      :include => [:answers, :category]
-    )
-    @answers = @question.answer_list(:shuffled => params[:shuffled])
+  # Load the question whose ID is passed in, pulling in the category and 
+  # answers as well.
+  #
+  # These are put into @question and @answers.
+  #
+  # If opts[:shuffle] is set then shuffle the answers.
+  def load_question_answers_and_category(id, opts={})
+    @question = Question.find id, :include => [:answers, :category]
+    @answers = @question.answer_list :shuffled => opts[:shuffled]
   end
 end
