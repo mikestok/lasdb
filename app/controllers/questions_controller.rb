@@ -13,10 +13,15 @@ class QuestionsController < ApplicationController
   end
 
   def shuffle_answers
-    @question      = Question.find(params[:id])
-    @target_div_id = params[:target_div_id]
     respond_to do |format|
-      format.js
+      format.js{
+        params[:shuffled] = true
+        load_question_answers_and_category
+        @target_div_id    = params[:target_div_id]
+      }
+      format.html {
+        redirect_to :action => :show, :id => params[:id], :shuffled =>true
+      }
     end
   end
 
@@ -29,6 +34,9 @@ class QuestionsController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
@@ -38,14 +46,24 @@ class QuestionsController < ApplicationController
     answer.destroy
     respond_to do |format|
       format.js { render "move_answer" }
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
   def add_answer
     @question = Question.find(params[:id])
-    Answer.create(:text => 'a new answer', :question_id => @question.id).move_to_bottom
+    Answer.create(
+      :text        => 'a new answer',
+      :question_id => @question.id
+    ).move_to_bottom
+
     respond_to do |format|
       format.js { render "move_answer" }
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
@@ -106,5 +124,6 @@ class QuestionsController < ApplicationController
       params[:id],
       :include => [:answers, :category]
     )
+    @answers = @question.answer_list(:shuffled => params[:shuffled])
   end
 end
