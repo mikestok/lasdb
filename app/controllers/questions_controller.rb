@@ -13,10 +13,14 @@ class QuestionsController < ApplicationController
   end
 
   def shuffle_answers
-    @question      = Question.find(params[:id])
-    @target_div_id = params[:target_div_id]
     respond_to do |format|
-      format.js
+      format.js{
+        load_question_answers_and_category(params[:id], :shuffled => true)
+        @target_div_id    = params[:target_div_id]
+      }
+      format.html {
+        redirect_to :action => :show, :id => params[:id], :shuffled =>true
+      }
     end
   end
 
@@ -29,6 +33,9 @@ class QuestionsController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
@@ -38,14 +45,24 @@ class QuestionsController < ApplicationController
     answer.destroy
     respond_to do |format|
       format.js { render "move_answer" }
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
   def add_answer
     @question = Question.find(params[:id])
-    Answer.create(:text => 'a new answer', :question_id => @question.id).move_to_bottom
+    Answer.create(
+      :text        => 'a new answer',
+      :question_id => @question.id
+    ).move_to_bottom
+
     respond_to do |format|
       format.js { render "move_answer" }
+      format.html {
+        redirect_to :action => :edit, :id => @question.id
+      }
     end
   end
 
@@ -65,7 +82,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id],
+      :shuffled => params[:shuffled]
   end
 
   def new
@@ -82,11 +100,11 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id]
   end
 
   def update
-    load_question_answers_and_category
+    load_question_answers_and_category params[:id]
     if @question.update_attributes(params[:question])
       redirect_to @question, :notice  => "Successfully updated question."
     else
@@ -101,10 +119,14 @@ class QuestionsController < ApplicationController
 
   private
 
-  def load_question_answers_and_category
-    @question = Question.find(
-      params[:id],
-      :include => [:answers, :category]
-    )
+  # Load the question whose ID is passed in, pulling in the category and 
+  # answers as well.
+  #
+  # These are put into @question and @answers.
+  #
+  # If opts[:shuffle] is set then shuffle the answers.
+  def load_question_answers_and_category(id, opts={})
+    @question = Question.find id, :include => [:answers, :category]
+    @answers = @question.answer_list :shuffled => opts[:shuffled]
   end
 end
