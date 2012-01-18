@@ -3,7 +3,7 @@ $("div#<%= j @target_div_id %>").html("<%=
           :locals => {
             :id      => @question.id,
             :prompt  => @question.prompt,
-            :answers => @question.answer_list(:shuffled => true)
+            :answers => @answers
           }
          )
 %>");
