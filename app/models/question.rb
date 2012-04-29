@@ -46,9 +46,10 @@ class Question < ActiveRecord::Base
 
     list.each.collect do |a|
       OpenStruct.new({
-        :tag     => tags.shift,
-        :text    => res.resolve_refs(a.text),
-        :correct => a.correct,
+        :tag         => tags.shift,
+        :text        => res.resolve_refs(a.text),
+        :explanation => a.explanation,
+        :correct     => a.correct,
       })
     end
   end

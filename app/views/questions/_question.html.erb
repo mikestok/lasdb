@@ -5,7 +5,13 @@
   <% answers.each do |a| %>
     <tr class="<%= a.correct ? 'correct' : 'incorrect' %>">
     <td class="tag"><%= a.tag %>.</td>
-    <td class="text"><%= a.text %></td>
+    <td class="text">
+      <%= a.text %>
+      <% if a.explanation.present? %>
+        <hr />
+        <%= a.explanation %>
+      <% end %>
+    </td>
     </tr>
   <% end %> 
 </table>

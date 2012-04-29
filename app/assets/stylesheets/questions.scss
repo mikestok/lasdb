@@ -2,8 +2,11 @@
 
 // answers_table is used for displaying answers
 table.answers_table {
+  border-collapse: collapse;
+
   th, td {
     vertical-align: top;
+    border: 1px dotted #666;
   }
 
   tr.correct {
