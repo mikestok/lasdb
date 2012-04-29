@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106024646) do
+ActiveRecord::Schema.define(:version => 20120429134043) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120106024646) do
     t.string   "ref",         :limit => 5
     t.integer  "position"
     t.boolean  "anchored"
+    t.text     "explanation"
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"

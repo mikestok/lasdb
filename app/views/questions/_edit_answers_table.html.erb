@@ -3,7 +3,7 @@
   <th><!-- Move answer up column --></th>
   <th><!-- Move answer down column --></th>
   <th>Ref</th>
-  <th>Text</th>
+  <th>Text &amp; Explanation</th>
   <th>Correct?</th>
   <th>Anchored?</th>
   <th><!-- Add / Remove answer control column --></th>
@@ -21,7 +21,11 @@
             move_answer_control(a, "down")
           end %></td>
   <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
-  <td><%= a.text_area :text, :rows => 1, :class => "change-answer-content" %></td>
+  <td>
+    <%= a.text_area :text, :rows => 1, :class => "change-answer-content" %>
+    <br />
+    <%= a.text_area :explanation, :rows => 1, :class => "change-answer-content" %>
+  </td>
   <td class="check-box-cell"><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
   <td class="check-box-cell"><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
   <td><%= delete_answer_control(a) %></td>
