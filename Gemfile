@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.10'
+gem 'rails', '~> 3.1'
 gem "jquery-rails"
 gem "acts_as_tree_rails3"
 gem "acts_as_list"
