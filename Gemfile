@@ -26,7 +26,6 @@ end
 group :development do
   gem "nifty-generators"
   gem "taps"
-  gem "heroku"
   gem "annotate"
   gem "ruby-debug19"
 end
