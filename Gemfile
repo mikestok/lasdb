@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.1'
+ruby '2.0.0'
+
+gem 'rails', '~> 3.2'
 gem "jquery-rails"
 gem "acts_as_tree_rails3"
 gem "acts_as_list"
@@ -16,18 +18,18 @@ end
 group :production do
   gem "pg"
   gem "newrelic_rpm"
-  gem "rack-ssl", :require => "rack/ssl"
+  # gem "rack-ssl", :require => "rack/ssl"
 end
 
 group :development, :test do
-  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "sqlite3"
 end
 
 group :development do
   gem "nifty-generators"
-  gem "taps"
+  # gem "taps"
   gem "annotate"
-  gem "ruby-debug19"
+  # gem "ruby-debug" # This doesn't seem to work with 1.9.x or 2.x.x
 end
 
 group :test do
