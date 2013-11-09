@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120429134043) do
     t.integer  "question_id"
     t.text     "text"
     t.boolean  "correct"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "ref",         :limit => 5
     t.integer  "position"
     t.boolean  "anchored"
@@ -28,19 +28,19 @@ ActiveRecord::Schema.define(:version => 20120429134043) do
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "categories", :force => true do |t|
-    t.string    "name"
-    t.integer   "parent_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
 
   create_table "questions", :force => true do |t|
-    t.text      "prompt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "category_id"
+    t.text     "prompt"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "category_id"
   end
 
   add_index "questions", ["category_id"], :name => "index_questions_on_category_id"
