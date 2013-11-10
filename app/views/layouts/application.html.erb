@@ -23,7 +23,7 @@
 
         <div id="container">
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <%= content_tag :div, msg, id: "flash_#{name}" %>
           <% end %>
           <%= content_tag :h1, yield(:title) if show_title? %>
           <div style="width: 100%; height=100%; overflow: auto;">

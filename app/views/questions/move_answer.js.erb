@@ -1,4 +1,4 @@
-$("div#question_form").html("<%= j render :partial => "form" %>");
+$("div#question_form").html("<%= j render partial: "form" %>");
 // Make sure the newly rendered question form has its text areas
 // set to auto-resize.
 $.setUpAutoResize();

@@ -10,33 +10,33 @@
         <td>
           <div class="question" id="question_<%= question.id %>">
             <%= render question,
-              :prompt        => question.prompt,
-              :answers       => question.answer_list
+              prompt: question.prompt,
+              answers: question.answer_list
             %>
           </div>
         </td>
         <td class="non_printing">
-          <%= link_to make_icon_tag("switch", :title => "Shuffle answers"),
-            { :id => question,
-              :controller => :questions,
-              :action => :shuffle_answers,
-              :target_div_id => "question_#{question.id}",
-            }, {:remote => true }
+          <%= link_to make_icon_tag("switch", title: "Shuffle answers"),
+            { id: question,
+              controller: :questions,
+              action: :shuffle_answers,
+              target_div_id: "question_#{question.id}",
+            }, {remote: true }
           %>
         </td>
         <td class="non_printing">
-          <%= link_to make_icon_tag("forward", :title => "Show question"),
+          <%= link_to make_icon_tag("forward", title: "Show question"),
             question %>
         </td>
         <td class="non_printing">
-          <%= link_to make_icon_tag("edit", :title => "Edit question"),
+          <%= link_to make_icon_tag("edit", title: "Edit question"),
             edit_question_path(question) %>
         </td>
         <td class="non_printing">
-          <%= link_to make_icon_tag("trash", :title => "Delete question"),
+          <%= link_to make_icon_tag("trash", title: "Delete question"),
             question,
-            :confirm => 'Are you sure?',
-            :method => :delete %>
+            confirm: 'Are you sure?',
+            method: :delete %>
         </td>
       </tr>
     <% end %>
@@ -44,6 +44,6 @@
 <% end %>
 
 <p class="non_printing">
-<%= link_to make_icon_tag("add", :title => "Add a New Question"),
+<%= link_to make_icon_tag("add", title: "Add a New Question"),
   new_question_path %>
 </p>

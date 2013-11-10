@@ -1,21 +1,23 @@
 require 'test_helper'
 
+##
+# Class for testing Questions
 class QuestionTest < ActiveSupport::TestCase
   def setup
     @valid_q_params = {
-      :prompt => 'This is a valid question because:',
-      :answers_attributes => [
+      prompt: 'This is a valid question because:',
+      answers_attributes: [
         {
-          :text => 'It has a prompt',
-          :correct => false,
+          text: 'It has a prompt',
+          correct: false,
         },
         {
-          :text => 'It has an answer',
-          :correct => false,
+          text: 'It has an answer',
+          correct: false,
         },
         {
-          :text => 'Both of the above',
-          :correct => true,
+          text: 'Both of the above',
+          correct: true,
         }
       ],
     }
