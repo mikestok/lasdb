@@ -5,22 +5,22 @@ class QuestionsController < ApplicationController
         make_category_id_filter_condition(
           params[:filter_category_id], params[:include_subcategories]
         ),
-        :include => [:answers, :category]
+        include: [:answers, :category]
       )
     else
-      @questions = Question.all(:include => [:answers, :category])
+      @questions = Question.all(include: [:answers, :category])
     end
   end
 
   def shuffle_answers
     respond_to do |format|
-      format.js{
-        load_question_answers_and_category(params[:id], :shuffled => true)
+      format.js do
+        load_question_answers_and_category(params[:id], shuffled: true)
         @target_div_id    = params[:target_div_id]
-      }
-      format.html {
-        redirect_to :action => :show, :id => params[:id], :shuffled =>true
-      }
+      end
+      format.html do
+        redirect_to action: :show, id: params[:id], shuffled: true
+      end
     end
   end
 
@@ -28,14 +28,14 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     answer = Answer.find(params[:answer_id])
     case params[:direction]
-    when "up" then answer.move_higher
-    when "down" then answer.move_lower
+    when 'up' then answer.move_higher
+    when 'down' then answer.move_lower
     end
     respond_to do |format|
       format.js
-      format.html {
-        redirect_to :action => :edit, :id => @question.id
-      }
+      format.html do
+        redirect_to action: :edit, id: @question.id
+      end
     end
   end
 
@@ -50,8 +50,8 @@ class QuestionsController < ApplicationController
   def add_answer
     @question = Question.find(params[:id])
     Answer.create(
-      :text        => 'a new answer',
-      :question_id => @question.id
+      text: 'a new answer',
+      question_id: @question.id
     ).move_to_bottom
 
     respond_to_changed_number_of_answers
@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
 
   def show
     load_question_answers_and_category params[:id],
-      :shuffled => params[:shuffled]
+      shuffled: params[:shuffled]
   end
 
   def new
@@ -83,9 +83,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(params[:question])
     if @question.save
-      redirect_to edit_question_path(@question), :notice => "Successfully created question."
+      redirect_to(edit_question_path(@question),
+                  notice: 'Successfully created question.')
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -96,15 +97,15 @@ class QuestionsController < ApplicationController
   def update
     load_question_answers_and_category params[:id]
     if @question.update_attributes(params[:question])
-      redirect_to @question, :notice  => "Successfully updated question."
+      redirect_to @question, notice: 'Successfully updated question.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
   def destroy
     Question.find(params[:id]).destroy
-    redirect_to questions_url, :notice => "Successfully destroyed question."
+    redirect_to questions_url, notice: 'Successfully destroyed question.'
   end
 
   private
@@ -116,8 +117,8 @@ class QuestionsController < ApplicationController
   #
   # If opts[:shuffle] is set then shuffle the answers.
   def load_question_answers_and_category(id, opts={})
-    @question = Question.find id, :include => [:answers, :category]
-    @answers = @question.answer_list :shuffled => opts[:shuffled]
+    @question = Question.find id, include: [:answers, :category]
+    @answers = @question.answer_list shuffled: opts[:shuffled]
   end
 
   ##
@@ -125,7 +126,7 @@ class QuestionsController < ApplicationController
   # going back to editing the question
   def respond_to_changed_number_of_answers
     respond_to do |format|
-      format.js { render "move_answer" }
+      format.js { render 'move_answer' }
       format.html do
         redirect_to action: :edit, id: @question.id
       end

@@ -1,6 +1,8 @@
+##
+# The controller for dealing with Categories
 class CategoriesController < ApplicationController
   def index
-    @root_categories = Category.where(:parent_id => nil)
+    @root_categories = Category.where(parent_id: nil)
   end
 
   def show
@@ -16,15 +18,15 @@ class CategoriesController < ApplicationController
     parent_id = params[:category][:parent_id]
 
     if parent_id.blank?
-      @category = Category.create(:name => name)
+      @category = Category.create(name: name)
     else
-      @category = Category.find(parent_id).children.create(:name => name)
+      @category = Category.find(parent_id).children.create(name: name)
     end
 
     if @category.save
-      redirect_to @category, :notice => "Successfully created category."
+      redirect_to @category, notice: 'Successfully created category.'
     else
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -35,9 +37,9 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(params[:category])
-      redirect_to @category, :notice  => "Successfully updated category."
+      redirect_to @category, notice: 'Successfully updated category.'
     else
-      render :action => 'edit'
+      render action: 'edit'
     end
   end
 
@@ -50,6 +52,6 @@ class CategoriesController < ApplicationController
   # def destroy
   #   @category = Category.find(params[:id])
   #   @category.destroy
-  #   redirect_to categories_url, :notice => "Successfully destroyed category."
+  #   redirect_to categories_url, notice: "Successfully destroyed category."
   # end
 end

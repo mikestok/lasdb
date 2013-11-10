@@ -2,7 +2,7 @@
   <% categories.sort.each do |c| %>
     <li><%= link_to c.name, c %>
       <% if not c.children.empty? %>
-        <%= render "down_from", :categories => c.children %>
+        <%= render "down_from", categories: c.children %>
       <% end %>
     </li>
   <% end %>

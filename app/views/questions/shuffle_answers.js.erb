@@ -1,9 +1,9 @@
 $("div#<%= j @target_div_id %>").html("<%=
- j render(:partial => 'question',
-          :locals => {
-            :id      => @question.id,
-            :prompt  => @question.prompt,
-            :answers => @answers
+ j render(partial: 'question',
+          locals: {
+            id: @question.id,
+            prompt: @question.prompt,
+            answers: @answers
           }
          )
 %>");
