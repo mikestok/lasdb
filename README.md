@@ -63,8 +63,19 @@ and SECRET to be set up on Heroku.  This can be done using
     heroku config:add USERNAME='username' --app whatever
     heroku config:add SECRET='secret' --app whatever
 
-As this is using basic auth we need to force the use of SSL, and this 
+As this is using basic auth we need to force the use of SSL, and this
 in turn assumes the Piggyback SSL addon has been added on in Heroku.
+
+## Entity Relationship Diagram
+
+_On a Mac…_ if you install the graphviz package from
+http://www.graphviz.org/Download_macos.php then you can use a command like:
+
+    bundle exec rake erd \
+      attributes=foreign_keys,primary_keys,timestamps,inheritance,content \
+      notation=bachman
+
+To generate a PDF of the database schema.
 
 ## Database Backups
 
@@ -80,6 +91,6 @@ Run
 
 to get the latest database backup (assumes PG Backups addon is installed).
 
-## Author
+## Author(s)
 
 Mike Stok <mike@stok.ca>
