@@ -30,6 +30,7 @@ group :development do
   # gem "taps"
   gem "annotate"
   # gem "ruby-debug" # This doesn't seem to work with 1.9.x or 2.x.x
+  gem "rails-erd"
 end
 
 group :test do

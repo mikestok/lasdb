@@ -6,3 +6,5 @@ database-backups/
 .sass-cache/
 # vendor directory (used by bundler)
 vendor/
+# erd.pdf is a generated file
+erd.pdf
