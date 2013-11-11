@@ -49,8 +49,10 @@ module QuestionsHelper
                    make_icon_tag "arrow2_n",
                      :title => "Move answer up"
                  when "down"
-                   make_icon_tag "arrow2_s", 
-                     :title => "Move answer down"
+                   make_icon_tag "arrow2_s",
+                     title: "Move answer down"
+                 else
+                   raise "Unsupported value '#{direction}'"
                  end
     link_to image_link, {
       :controller => :questions,
