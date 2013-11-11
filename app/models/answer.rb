@@ -1,13 +1,13 @@
 class Answer < ActiveRecord::Base
   belongs_to :question
-  acts_as_list :scope => :question
+  acts_as_list scope: :question
 
   validates_format_of :ref,
-    :with => /\A[A-Za-z0-9]{1,5}\Z/,
-    :allow_blank => true
+    with: /\A[A-Za-z0-9]{1,5}\Z/,
+    allow_blank: true
   validates_uniqueness_of :ref,
-    :scope => :question_id,
-    :allow_blank => true
+    scope: :question_id,
+    allow_blank: true
 end
 
 

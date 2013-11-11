@@ -2,11 +2,11 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :category %>
-    <%= f.collection_select :category_id, Category.all.sort, :id, :full_name, { :include_blank => "Select a category" }  %>
+    <%= f.collection_select :category_id, Category.all.sort, :id, :full_name, { include_blank: "Select a category" }  %>
   </p>
   <p>
     <%= f.label :prompt %><br />
-    <%= f.text_area :prompt, :rows => 3%>
+    <%= f.text_area :prompt, rows: 3%>
   </p>
   <% # The test for "if @question.id" let me tell if the question has
      # been saved yet.  If it has just been created, but hasn't been saved
@@ -18,7 +18,7 @@
      # something working.
   %>
   <% if @question.id %>
-  <%= render :partial => "edit_answers_table", :locals => {:f => f} %>
+  <%= render partial: "edit_answers_table", locals: {f: f} %>
   <% end %>
   <p><%= f.submit %></p>
 <% end %>
