@@ -43,12 +43,8 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     answer = Answer.find(params[:answer_id])
     answer.destroy
-    respond_to do |format|
-      format.js { render "move_answer" }
-      format.html {
-        redirect_to :action => :edit, :id => @question.id
-      }
-    end
+
+    respond_to_changed_number_of_answers
   end
 
   def add_answer
@@ -58,14 +54,8 @@ class QuestionsController < ApplicationController
       :question_id => @question.id
     ).move_to_bottom
 
-    respond_to do |format|
-      format.js { render "move_answer" }
-      format.html {
-        redirect_to :action => :edit, :id => @question.id
-      }
-    end
+    respond_to_changed_number_of_answers
   end
-
 
   # in: category id (possibly nil)
   #     include subcategories flag
@@ -128,5 +118,17 @@ class QuestionsController < ApplicationController
   def load_question_answers_and_category(id, opts={})
     @question = Question.find id, :include => [:answers, :category]
     @answers = @question.answer_list :shuffled => opts[:shuffled]
+  end
+
+  ##
+  # Delete and add answer both end up doing the same thing,
+  # going back to editing the question
+  def respond_to_changed_number_of_answers
+    respond_to do |format|
+      format.js { render "move_answer" }
+      format.html do
+        redirect_to action: :edit, id: @question.id
+      end
+    end
   end
 end
