@@ -1,2 +1,9 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+= Glossary
+
+Tag - the label for an Answer in a question, for example a, b, c, ...
+
+Question - comprises a Prompt and one or more Answers
+
+= Documentation formatting
+
+See http://docs.seattlerb.org/rdoc/RDoc/Markup.html
