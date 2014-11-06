@@ -5,8 +5,8 @@ tmp/
 database-backups/
 .sass-cache/
 # bundled gems
-vendor/bin/
-vendor/cache/
-vendor/doc/
-vendor/gems/
-vendor/specifications/
+/vendor/bin/
+/vendor/doc/
+/vendor/gems/
+/vendor/specifications/
+/vendor/bundle/
