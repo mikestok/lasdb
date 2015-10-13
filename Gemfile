@@ -15,7 +15,7 @@ group :assets do
   gem 'uglifier'
 end
 
-group :production do
+group :production, :development do
   gem "pg"
   gem "rack-ssl", :require => "rack/ssl"
 end
