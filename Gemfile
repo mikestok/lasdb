@@ -7,6 +7,7 @@ gem "acts_as_tree_rails3"
 gem "acts_as_list"
 gem "foreman"
 gem "thin"
+gem "rake-compiler"
 
 group :assets do
   gem 'sass-rails'

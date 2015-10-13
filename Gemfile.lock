@@ -165,6 +165,7 @@ DEPENDENCIES
   pg
   rack-ssl
   rails (~> 3.1)
+  rake-compiler
   ruby-debug19
   sass-rails
   sqlite3-ruby
