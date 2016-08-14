@@ -54,7 +54,7 @@ class QuestionsController < ApplicationController
   def add_answer
     @question = Question.find(params[:id])
     Answer.create(
-      :text        => 'a new answer',
+      :text        => '',
       :question_id => @question.id
     ).move_to_bottom
 

@@ -22,9 +22,15 @@
           end %></td>
   <td><%= a.text_field :ref, :size => 5, :class => "change-answer-content" %></td>
   <td>
-    <%= a.text_area :text, :rows => 1, :class => "change-answer-content" %>
+    <%= a.text_area :text,
+      :placeholder => "Answer",
+      :rows => 1,
+      :class => "change-answer-content" %>
     <br />
-    <%= a.text_area :explanation, :rows => 1, :class => "change-answer-content" %>
+    <%= a.text_area :explanation,
+      :placeholder => "Explanation",
+      :rows => 1,
+      :class => "change-answer-content" %>
   </td>
   <td class="check-box-cell"><%= a.check_box :correct, :class => ["radio-like", "change-answer-content"] %></td>
   <td class="check-box-cell"><%= a.check_box :anchored, :class => "change-answer-content"  %></td>
