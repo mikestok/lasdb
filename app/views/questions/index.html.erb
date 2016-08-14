@@ -2,6 +2,11 @@
 
 <%= render "category_filter_form" %>
 
+<p class="non_printing">
+<%= link_to make_icon_tag("add", :title => "Add a New Question"),
+  new_question_path %>
+</p>
+
 <% sorted_grouped_questions(@questions).each do |group| %>
   <div class="category_heading"><%= group[0].full_category_name %></div> 
   <table>
